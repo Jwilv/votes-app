@@ -1,4 +1,5 @@
 import React from "react"
+import { BandAdd } from "../components/BandAdd"
 
 
 export const App = ()=>{
@@ -20,7 +21,7 @@ return (
     Band List
   </div>
   <div className="col-8">
-    Band Add
+    <BandAdd />
   </div>
 </div>
 
