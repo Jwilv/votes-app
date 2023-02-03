@@ -14,10 +14,10 @@ export const BandList = () => {
                         <th>Votos</th>
                         <th>Borrar</th>
                     </tr>
-                    <tbody>
+                </thead>
+                <tbody>
                         <CreateRows />
                     </tbody>
-                </thead>
             </table>
         </>
     )
