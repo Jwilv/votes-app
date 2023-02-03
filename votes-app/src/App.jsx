@@ -22,23 +22,27 @@ export const App = () => {
   }, [socket])
 
   useEffect(() => {
-    socket.on('connect',()=>{
+    socket.on('connect', () => {
       setOnline(true);
     })
   }, [socket])
 
   useEffect(() => {
-    socket.on('disconnect',()=>{
+    socket.on('disconnect', () => {
       setOnline(false);
     })
   }, [socket])
 
   useEffect(() => {
-    socket.on('current-bands',(bands)=>{
+    socket.on('current-bands', (bands) => {
       console.log(bands);
       setBands(bands)
     })
   }, [socket])
+
+  const votar = (id) => {
+    console.log('votar');
+  }
 
 
   return (
@@ -59,8 +63,8 @@ export const App = () => {
 
       <div className="row">
         <div className="col-8">
-          <BandList 
-          data={bands}
+          <BandList
+            data={bands}
           />
         </div>
         <div className="col-4">
