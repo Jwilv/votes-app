@@ -1,21 +1,7 @@
 import React from "react";
+import { CreateRows } from "./CreateRows";
 
 export const BandList = () => {
-
-    const createRows = () => {
-        return (
-            <tr>
-                <td>
-                    <button className="btn btn-primary">+1</button>
-                </td>
-                <td>
-                    <input className="form-control" />
-                </td>
-                <td>Votos</td>
-                <td>Borrar</td>
-            </tr>
-        )
-    }
 
 
     return (
@@ -29,7 +15,7 @@ export const BandList = () => {
                         <th>Borrar</th>
                     </tr>
                     <tbody>
-
+                        <CreateRows />
                     </tbody>
                 </thead>
             </table>
