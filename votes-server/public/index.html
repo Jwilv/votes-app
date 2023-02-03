@@ -11,31 +11,8 @@
 </head>
 
 <body class="container">
-    <h1 class="mt-5">minichat</h1>
-    <hr>
+    <h1 class="mt-5">bloq</h1>
 
-
-
-    <form id="miFormulario">
-        <div class="row">
-            <div class="col-8">
-                <input type="text" id="txtMsg" placeholder="mensaje" class="form-control">
-            </div>
-            <div class="col-4">
-                <button type="submit" class="btn btn-primary">
-                    Enviar
-                </button>
-            </div>
-        </div>
-    </form>
-
-
-    <div class="row">
-        <div class="col">
-            <ul id="mismsg">
-            </ul>
-        </div>
-    </div>
 
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"
@@ -43,30 +20,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const socket = io('http://localhost:5050/');
-        socket.on('ms-bienvenida', data => {
-        
-        })
-        const form = document.querySelector('#miFormulario')
-        const msg = document.querySelector('#mismsg')
-        const txt = document.querySelector('#txtMsg')
 
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const newTxt = txt.value;
-            socket.emit('msg-to-server', { text: newTxt })
-        })
+        socket.on('current-bands', data => console.log(data));
 
-        socket.on('msg-from-server', data => {
-        
-            msg.innerHTML += `<li>${data.text}</li>`
-        })
-
-        // setTimeout(() => {
-        //     socket.emit('msg-cliente', {
-        //         msg: 'cliente',
-        //         name: 'juan'
-        //     })
-        // }, 2000)
     </script>
 </body>
 

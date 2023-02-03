@@ -1,3 +1,4 @@
+const BandList = require("./band-list");
 
 
 class Sockets {
@@ -5,19 +6,25 @@ class Sockets {
     constructor(io) {
         this.io = io;
 
+        this.bandList = new BandList();
+
         this.socketEvents();
     }
 
     socketEvents() {
         // on connection
         this.io.on('connection', (socket) => {
-            //escuchar evento del server
-            socket.on('msg-to-server', (data) => {
-                console.log(data)
-                this.io.emit('msg-from-server', data)
-            });
+            console.log('cliente conectado');
 
-        });
+
+            //Emitir al cliente conectado todas las bandas actuales
+            socket.emit('current-bands', this.bandList.getBands())
+
+
+
+        })
+
+
     }
 }
 
