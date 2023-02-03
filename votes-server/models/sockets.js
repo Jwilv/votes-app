@@ -20,7 +20,10 @@ class Sockets {
             //Emitir al cliente conectado todas las bandas actuales
             socket.emit('current-bands', this.bandList.getBands())
 
-
+            socket.on('votar-band', (id)=>{
+                this.bandList.increaseVotes(id);
+                this.io.emit('current-bands', this.bandList.getBands())
+            })
 
         })
 
