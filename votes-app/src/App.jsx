@@ -43,6 +43,14 @@ export const App = () => {
     socket.emit('votar-band', id)
   }
 
+  const deleteBand = (id)=>{
+    socket.emit('delete-band', id)
+  }
+
+  const changeName = (id, name)=>{
+    socket.emit('change-name',{id, name})
+  }
+  
 
   return (
     <div className="container">
@@ -65,6 +73,8 @@ export const App = () => {
           <BandList
             data={bands}
             votar={votar}
+            clear={deleteBand}
+            cambiar={changeName}
           />
         </div>
         <div className="col-4">
