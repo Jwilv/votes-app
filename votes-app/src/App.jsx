@@ -1,37 +1,14 @@
 import React, { useEffect, useState } from "react"
-import { io } from 'socket.io-client'
 import { BandAdd } from "../components/BandAdd"
 import { BandList } from "../components/BandList"
-
-const connectSocketServer = () => {
-  const socket = io("http://localhost:5050/", {
-    transports: ['websocket']
-  });
-  return socket;
-}
 
 
 export const App = () => {
 
-  const [socket] = useState(connectSocketServer())
-  const [online, setOnline] = useState(false)
+
   const [bands, setBands] = useState([])
 
-  useEffect(() => {
-    setOnline(socket.connected);
-  }, [socket])
-
-  useEffect(() => {
-    socket.on('connect', () => {
-      setOnline(true);
-    })
-  }, [socket])
-
-  useEffect(() => {
-    socket.on('disconnect', () => {
-      setOnline(false);
-    })
-  }, [socket])
+  
 
   useEffect(() => {
     socket.on('current-bands', (bands) => {
@@ -49,6 +26,10 @@ export const App = () => {
 
   const changeName = (id, name)=>{
     socket.emit('change-name',{id, name})
+  }
+
+  const addBand = (name)=>{
+    socket.emit('add-band',{name})
   }
   
 
@@ -78,7 +59,8 @@ export const App = () => {
           />
         </div>
         <div className="col-4">
-          <BandAdd />
+          <BandAdd
+          addBand={addBand} />
         </div>
       </div>
 

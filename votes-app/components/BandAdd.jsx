@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const BandAdd = () => {
+export const BandAdd = ({addBand}) => {
 
 const [valueInput, setValueInput] = useState('')
 

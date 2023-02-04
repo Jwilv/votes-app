@@ -35,6 +35,11 @@ class Sockets {
                 this.io.emit('current-bands', this.bandList.getBands())
             })
 
+            socket.on('add-band', ({name})=>{
+                this.bandList.addBand(name);
+                this.io.emit('current-bands', this.bandList.getBands())
+            })
+
         })
 
 
