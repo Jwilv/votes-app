@@ -29,10 +29,6 @@ export const HomePage = () => {
   //   socket.emit('change-name',{id, name})
   // }
 
-  // const addBand = (name)=>{
-  //   socket.emit('add-band',{name})
-  // }
-
 
   return (
     <div className="container">

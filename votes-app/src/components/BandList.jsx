@@ -1,13 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { SocketContext } from "../context/SocketContext";
 //import { CreateRows } from "./CreateRows";
 
-export const BandList = ({ data, votar, clear, cambiar}) => {
+export const BandList = () => {
 
-    const [bands, setBands] = useState(data);
+    const [bands, setBands] = useState([]);
+
+    const { socket } = useContext(SocketContext)
 
     useEffect(() => {
-        setBands(data)
-    }, [data])
+        socket.on('current-bands', (bands) => {
+            setBands(bands)
+        })
+
+        return () => {
+            return socket.off('current-bands')
+        }
+    }, [socket])
+
+
+    const votar = (id) => {
+        socket.emit('votar-band', id)
+    }
+
+    const deleteBand = (id) => {
+        socket.emit('delete-band', id)
+    }
+
+    const changeName = (id, name) => {
+        socket.emit('change-name', { id, name })
+    }
 
     const changeBands = (event, id) => {
         const newName = event.target.value;
@@ -19,8 +41,8 @@ export const BandList = ({ data, votar, clear, cambiar}) => {
         }))
     }
 
-    const notFocus = (id,name)=>{
-        cambiar(id,name)
+    const notFocus = (id, name) => {
+        changeName(id, name)
     }
 
     const CreateRows = () => {
@@ -28,9 +50,9 @@ export const BandList = ({ data, votar, clear, cambiar}) => {
             bands.map(band => (
                 <tr key={band.id}>
                     <td>
-                        <button 
-                        className="btn btn-primary"
-                        onClick={()=>votar(band.id)}
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => votar(band.id)}
                         >+1</button>
                     </td>
                     <td>
@@ -38,16 +60,16 @@ export const BandList = ({ data, votar, clear, cambiar}) => {
                             className="form-control"
                             value={band.name}
                             onChange={() => changeBands(event, band.id)}
-                            onBlur={ ()=> notFocus(band.id,band.name)}
+                            onBlur={() => notFocus(band.id, band.name)}
                         />
                     </td>
                     <td>
                         <h3>{band.votes}</h3>
                     </td>
                     <td>
-                        <button 
-                        className="btn btn-danger"
-                        onClick={()=>clear(band.id)}
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => deleteBand(band.id)}
                         >
                             Borrar
                         </button>
