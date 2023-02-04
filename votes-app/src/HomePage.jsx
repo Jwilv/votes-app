@@ -6,28 +6,7 @@ import { SocketContext } from "./context/SocketContext"
 
 export const HomePage = () => {
 
-
-  // const [bands, setBands] = useState([])
-
   const { online } = useContext(SocketContext);
-
-  // useEffect(() => {
-  //   socket.on('current-bands', (bands) => {
-  //     setBands(bands)
-  //   })
-  // }, [socket])
-
-  // const votar = (id) => {
-  //   socket.emit('votar-band', id)
-  // }
-
-  // const deleteBand = (id)=>{
-  //   socket.emit('delete-band', id)
-  // }
-
-  // const changeName = (id, name)=>{
-  //   socket.emit('change-name',{id, name})
-  // }
 
 
   return (
