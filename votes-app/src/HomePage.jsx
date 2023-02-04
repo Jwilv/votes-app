@@ -9,7 +9,7 @@ export const HomePage = () => {
 
   // const [bands, setBands] = useState([])
 
-  const {online} = useContext(SocketContext);
+  const { online } = useContext(SocketContext);
 
   // useEffect(() => {
   //   socket.on('current-bands', (bands) => {
@@ -32,7 +32,7 @@ export const HomePage = () => {
   // const addBand = (name)=>{
   //   socket.emit('add-band',{name})
   // }
-  
+
 
   return (
     <div className="container">
@@ -52,16 +52,10 @@ export const HomePage = () => {
 
       <div className="row">
         <div className="col-8">
-          {/* <BandList
-            data={bands}
-            votar={votar}
-            clear={deleteBand}
-            cambiar={changeName}
-          /> */}
+          <BandList />
         </div>
         <div className="col-4">
-          {/* <BandAdd
-          addBand={addBand} /> */}
+          <BandAdd />
         </div>
       </div>
 
