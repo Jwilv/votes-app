@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { BandAdd } from "../components/BandAdd"
 import { BandList } from "../components/BandList"
+import { useSocket } from "../hooks/useSocket"
 
 
 export const App = () => {
@@ -8,7 +9,7 @@ export const App = () => {
 
   const [bands, setBands] = useState([])
 
-  
+  const {socket,online} = useSocket('http://localhost:5050')
 
   useEffect(() => {
     socket.on('current-bands', (bands) => {
